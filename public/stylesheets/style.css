@@ -7,18 +7,13 @@ body {
   height: 100vh;
 }
 
-.home {
-  color: #FFFFFF;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 #connectionbutton{
   color:red;
+  font-weight: bold; 
+}
+
+#mylastripbutton{
+  color:black;
   font-weight: bold; 
 }
 
@@ -28,7 +23,6 @@ body {
 }
 
 .footer {
-  padding:200px;
   color:#FFFFFF;
   text-align:center;
 }

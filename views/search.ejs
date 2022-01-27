@@ -30,17 +30,17 @@
                 <div class="col-12">
                     <form class="row" action="/search" method="POST">
                         <div class="col-12 offset-md-1 col-md-3">               
-                            <div class="form-group">                      
+                            <div class="form-group my-2">                      
                                 <input name="fromFromFront" type="text" class="form-control" placeholder="From: Paris, Marseille...">
                             </div>
                         </div>    
                         <div class="col-12 col-md-3">
-                            <div class="form-group">              
+                            <div class="form-group my-2">              
                                 <input name="toFromFront" type="text" class="form-control" placeholder="To: Lille, Nantes..."> 
                             </div>         
                         </div>
                         <div class="col-12 col-md-3">
-                            <div class="form-group d-flex">              
+                            <div class="form-group d-flex my-2">              
                                 <input name="dateFromFront" type="date" class="form-control" value="" min="2018-11-01" max="2018-11-31">
                                 <button type="submit" class="btn btn-danger ms-2">Go</button> 
                             </div>         
@@ -54,6 +54,7 @@
                     <img class="rounded mx-auto d-block my-5" height="200" src="./images/landmark.png" alt="citypic"/>
                 </div>
             </div>
+            <%- include('footer') %>
         </div>
     </body>
 </html>
