@@ -21,7 +21,7 @@ router.post('/search', async function (req, res, next) {
   // console.log("---from / to / date:", from, to, date)
 
   // En cours
-  await UserModel.findOne( { lastname: "doe" } );
+  // await UserModel.findOne( { lastname: "doe" } );
 
   res.render('search')
 })
