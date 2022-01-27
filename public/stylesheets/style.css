@@ -1,8 +1,28 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: linear-gradient(#1e5799, #7db9e8);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-a {
-  color: #00B7FF;
+.home {
+  color: #FFFFFF;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer {
+  padding:200px;
+  color:#FFFFFF;
+  text-align:center;
+}
+
+.titleNoTrain {
+  color:#FFFFFF;
 }

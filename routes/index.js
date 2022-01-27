@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
+
 var journeyModel = require('../models/journey');
+
+var userModel = require('../models/users')
+
 
 // const mongoose = require('mongoose');
 
@@ -40,7 +44,76 @@ var date = ["2018-11-20","2018-11-21","2018-11-22","2018-11-23","2018-11-24"]
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('login');
+});
+
+
+
+// Post sign-up
+router.post('/sign-up', async function(req,res,next){
+
+  var searchUser = await userModel.findOne({
+    email: req.body.emailFromFront
+  })
+  
+  console.log('searchUser', searchUser);
+
+  if(!searchUser){
+    var newUser = new userModel({
+      name: req.body.nameFromFront,
+      firstname: req.body.firstnameFromFront,
+      email: req.body.emailFromFront,
+      password: req.body.passwordFromFront,
+    })
+  
+    var newUserSave = await newUser.save();
+
+    console.log('newUserSave', newUserSave);
+    console.log('req.session', req.session);
+  
+    req.session.user = {
+      firstname: newUserSave.firstname, 
+      id: newUserSave._id
+    };
+  
+    res.redirect('/search')
+  } else {
+    res.redirect('/')
+  }
+  
+  console.log('req.session2', req.session);
+
+});
+
+
+// Post sign-in
+router.post('/sign-in', async function(req,res,next){
+
+  var searchUser = await userModel.findOne({
+    email: req.body.emailFromFront,
+    password: req.body.passwordFromFront
+  })
+
+  console.log('searchUser', searchUser);
+  console.log('req.session', req.session);
+
+  if(searchUser!= null){
+    req.session.user = {
+      name: searchUser.name, 
+      id: searchUser._id
+    }
+    res.redirect('/search')
+  } else {
+    res.render('login')
+  }
+  console.log('req.session2', req.session);
+  
+});
+
+
+//GET No Trains available
+router.get('/notrain', function(req, res, next) {
+  res.render('notrain');
 });
 
 
