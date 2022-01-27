@@ -1,8 +1,17 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+#connectionbutton{
+  color:red;
+  font-weight: bold; 
+}
+
+#onewayticket{
+  font-size: 30px;
+  color: #eaeff1
 }

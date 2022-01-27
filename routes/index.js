@@ -1,6 +1,30 @@
 var express = require('express');
+const req = require('express/lib/request');
 var router = express.Router();
 var journeyModel = require('../models/journey');
+
+
+// Get Search Page
+router.get('/homepage', function (req, res, next) {
+  console.log("---homepage page")
+
+  res.render('search')
+})
+
+router.post('/search', async function (req, res, next) {
+  console.log("---search route")
+  // console.log(req.body)
+
+  var from = req.body.fromFromFront;
+  var to = req.body.toFromFront;
+  var date = req.body.dateFromFront;
+  // console.log("---from / to / date:", from, to, date)
+
+  // En cours
+  await UserModel.findOne( { lastname: "doe" } );
+
+  res.render('search')
+})
 
 // const mongoose = require('mongoose');
 
