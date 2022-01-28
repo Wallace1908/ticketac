@@ -6,6 +6,13 @@ var userModel = require('../models/users')
 var journeyModel = require('../models/journey');
 
 
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('login');
+});
+
+
 // Get Search Page
 router.get('/homepage', function (req, res, next) {
   console.log("---homepage route / search view")
@@ -13,6 +20,8 @@ router.get('/homepage', function (req, res, next) {
   res.render('search')
 })
 
+
+// POST Search
 router.post('/search', async function (req, res, next) {
   console.log("---search route")
   // console.log(req.body)
@@ -29,14 +38,8 @@ router.post('/search', async function (req, res, next) {
 })
 
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('login');
-});
 
-
-
-// Post sign-up
+// POST sign-up
 router.post('/sign-up', async function(req,res,next){
 
   var searchUser = await userModel.findOne({
@@ -73,7 +76,7 @@ router.post('/sign-up', async function(req,res,next){
 });
 
 
-// Post sign-in
+// POST sign-in
 router.post('/sign-in', async function(req,res,next){
 
   console.log("req.body", req.body)
@@ -98,15 +101,24 @@ router.post('/sign-in', async function(req,res,next){
   
 });
 
+
 //GET No Trains available
 router.get('/notrain', function(req, res, next) {
   res.render('notrain');
 });
 
+
 //GET Availability
 router.get('/availability', function(req, res, next) {
   res.render('availability');
 });
+
+
+//GET Tickets
+router.get('/tickets', function(req, res, next) {
+  res.render('tickets');
+});
+
 
 // const mongoose = require('mongoose');
 
