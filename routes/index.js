@@ -115,8 +115,27 @@ router.get('/availability', function(req, res, next) {
 
 
 //GET Tickets
-router.get('/tickets', function(req, res, next) {
-  res.render('tickets');
+router.get('/tickets', async function(req, res, next) {
+  console.log("---req.query", req.query)
+
+  if(req.session.trainCard == undefined){
+    req.session.trainCard = []
+  }
+  console.log("---trainCard", req.session.trainCard)
+
+  var trainId = req.query.id
+
+  var trainToAdd = await journeyModel.findById(trainId);
+  console.log("---trainToAdd", trainToAdd)
+
+  req.session.trainCard.push(trainToAdd)
+  console.log("---req.session.trainCard after push", req.session.trainCard)
+
+
+
+
+
+  res.render('tickets', {trainCard:req.session.trainCard});
 });
 
 

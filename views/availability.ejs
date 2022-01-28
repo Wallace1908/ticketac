@@ -36,7 +36,7 @@
                       <span class="col"> <%= results[i].departure %> / <%= results[i].arrival %> </span>
                       <span class="col">Train departure at: <%= results[i].departureTime %> </span>
                       <span class="col"><%= results[i].price %>€</span>
-                      <button type="col" class="btn btn-danger" href="/tickets">OK</button>
+                      <a href="/tickets?id=<%=results[i]._id%>"><button type="col" class="btn btn-danger">OK</button></a>
                 </li>
 
                 <%
