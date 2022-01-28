@@ -8,7 +8,7 @@ var journeyModel = require('../models/journey');
 
 // Get Search Page
 router.get('/homepage', function (req, res, next) {
-  console.log("---homepage page")
+  console.log("---homepage route / search view")
 
   res.render('search')
 })
@@ -19,13 +19,13 @@ router.post('/search', async function (req, res, next) {
 
   var from = req.body.fromFromFront;
   var to = req.body.toFromFront;
-  var date = req.body.dateFromFront;
+  var date = new Date(req.body.dateFromFront);
   console.log("---from / to / date:", from, to, date)
 
-  // En cours
-  // await UserModel.findOne( { lastname: "doe" } );
+  var trajectFound = await journeyModel.find( { departure: from, arrival: to, date:date } );
+  console.log("trajectFound", trajectFound);
 
-  res.render('search')
+  res.render('availability', { trajectFound:trajectFound })
 })
 
 
@@ -134,7 +134,6 @@ router.post('/sign-in', async function(req,res,next){
   console.log('req.session2', req.session);
   
 });
-
 
 //GET No Trains available
 router.get('/notrain', function(req, res, next) {
