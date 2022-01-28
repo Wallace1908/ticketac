@@ -22,10 +22,10 @@ router.post('/search', async function (req, res, next) {
   var date = new Date(req.body.dateFromFront);
   console.log("---from / to / date:", from, to, date)
 
-  var trajectFound = await journeyModel.find( { departure: from, arrival: to, date:date } );
-  console.log("trajectFound", trajectFound);
+  var results = await journeyModel.find( { departure: from, arrival: to, date:date } );
+  console.log("results", results);
 
-  res.render('availability', { trajectFound:trajectFound })
+  res.render('availability', { date:date, results:results })
 })
 
 
