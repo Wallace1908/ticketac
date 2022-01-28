@@ -12,11 +12,32 @@
 
   <body>
 
-      <div class="footer">
-        <footer>
-            <p class="copyright">Mat & So © 2022</p>
-        </footer>
+    <%- include('header') %>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h4 class="title">Tickets available on 02/08</h4>
+            </div>
         </div>
+  
+
+        <!-- Liste des trajets possibles -->
+        <div class="row">
+            <div class="col-8 offset-2 text-center">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span class="col">Paris / Lille</span>
+                        <span class="col">Train departure at: 15:00 pm</span>
+                        <span class="col">93€</span>
+                        <button type="col" class="btn btn-danger">OK</button>
+                    </li>
+                </ul>
+    </div>
+
+    <%- include('footer') %>
+
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
