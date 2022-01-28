@@ -5,41 +5,12 @@ var router = express.Router();
 var userModel = require('../models/users')
 var journeyModel = require('../models/journey');
 
-
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('login');
 });
 
-
-// Get Search Page
-router.get('/homepage', function (req, res, next) {
-  console.log("---homepage route / search view")
-
-  res.render('search')
-})
-
-
-// POST Search
-router.post('/search', async function (req, res, next) {
-  console.log("---search route")
-  // console.log(req.body)
-
-  var from = req.body.fromFromFront;
-  var to = req.body.toFromFront;
-  var date = new Date(req.body.dateFromFront);
-  console.log("---from / to / date:", from, to, date)
-
-  var results = await journeyModel.find( { departure: from, arrival: to, date:date } );
-  console.log("results", results);
-
-  res.render('availability', { date:date, results:results })
-})
-
-
-
-// POST sign-up
+// Post sign-up
 router.post('/sign-up', async function(req,res,next){
 
   var searchUser = await userModel.findOne({
@@ -66,7 +37,7 @@ router.post('/sign-up', async function(req,res,next){
       id: newUserSave._id
     };
   
-    res.redirect('/search')
+    res.redirect('/homepage')
   } else {
     res.redirect('/')
   }
@@ -75,8 +46,7 @@ router.post('/sign-up', async function(req,res,next){
 
 });
 
-
-// POST sign-in
+// Post sign-in
 router.post('/sign-in', async function(req,res,next){
 
   console.log("req.body", req.body)
@@ -93,7 +63,7 @@ router.post('/sign-in', async function(req,res,next){
       name: searchUser.name, 
       id: searchUser._id
     }
-    res.redirect('/search')
+    res.redirect('/homepage')
   } else {
     res.render('login')
   }
@@ -101,9 +71,39 @@ router.post('/sign-in', async function(req,res,next){
   
 });
 
+// Get Search Page
+router.get('/homepage', function (req, res, next) {
+  console.log("---homepage route / search view")
 
-//GET No Trains available
+  res.render('search')
+})
+
+router.post('/search', async function (req, res, next) {
+  console.log("---search route")
+  console.log("req body", req.body)
+
+  var from = req.body.fromFromFront;
+  var to = req.body.toFromFront;
+  var date = new Date(req.body.dateFromFront);
+  console.log("---from / to / date:", from, to, date)
+
+  var results = await journeyModel.find( { departure: from, arrival: to, date:date } );
+  console.log("results", results);
+
+  if(results.length === 0){
+    // console.log("#1")
+    res.redirect('/notrain');
+    // console.log("#2")
+  } else {
+    // console.log("#3")
+    res.render('availability', { date:date, results:results })
+  }
+});
+
+//GET No Train available
 router.get('/notrain', function(req, res, next) {
+  console.log("---no train route")
+
   res.render('notrain');
 });
 
