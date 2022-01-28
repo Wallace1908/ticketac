@@ -38,3 +38,8 @@ body {
 .table-borderless {
   background-color:#FFFFFF;
 }
+
+.modal{
+  display: block;
+  position: relative;
+}
