@@ -34,3 +34,7 @@ body {
 .titleForm {
   color:#FFFFFF;
 }
+
+.table-borderless {
+  background-color:#FFFFFF;
+}
